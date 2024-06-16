@@ -1,0 +1,42 @@
+<div class="row margin-top align-items-center">
+    <div class="col text-center">
+        <button type="button" class="btn btn-primary w-100" (click)="obtenerEspectadores()">ObtenerTodos</button>
+    </div>
+    <div class="col text-center text-light">
+        <form>
+            <label for="_id">Buscar Por ID:</label>
+            <input type="text" name="_id" id="_id" [(ngModel)]="id">
+            <button type="button" class="btn btn-warning w-100" (click)="obtenerEspectadorById(id)">Buscar</button>
+        </form>
+    </div>
+<div class="row text-light">
+    <div class="col table-responsive">
+        <table class="table align-middle table-bordered border-primary">
+          <thead>
+            <tr class="table-dark text-center">
+                <th scope="col">#</th>
+                <th scope="col">_id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">EMAIL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of espectadores; let i = index" class="table-secondary text-center">
+              <th scope="row">{{i+1}}</th>
+              <td>{{e._id}}</td>
+              <td> {{e.nombre}}</td>
+              <td> {{e.apellido}}</td>
+              <td> {{e.dni}}</td>
+              <td> {{e.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <button type="button" class="btn btn-success w-100" (click)="agregarEspectador()">Agregar</button>
+    </div> 
+</div>

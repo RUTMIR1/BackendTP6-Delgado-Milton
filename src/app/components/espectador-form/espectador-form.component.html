@@ -1,0 +1,24 @@
+<div class="row margin-top d-flex justify-content-center align-items-center">
+    <div class="col-6 text-light">
+        <h2 class="text-center">Formulario Espectador</h2>
+        <form class="w-100">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input name="nombre" type="text" class="form-control" id="nombre" [(ngModel)]="espectador.nombre">
+            </div>
+            <div class="mb-3">
+              <label for="apellido" class="form-label">Apellido:</label>
+              <input name="apellido" type="text" class="form-control" id="apellido" [(ngModel)]="espectador.apellido">
+            </div>
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI</label>
+                <input name="dni" type="number" class="form-control" id="dni" [(ngModel)]="espectador.dni">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email:</label>
+                <input name="email" type="text" class="form-control" id="email" [(ngModel)]="espectador.email">
+            </div>
+            <button class="btn btn-primary w-100" (click)="guardarEspectador()">Guardar Espectador</button>
+        </form>
+    </div>
+</div>

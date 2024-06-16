@@ -1,0 +1,57 @@
+<div class="row margin-top">
+    <div class="col text-center">
+        <button type="button" class="btn btn-primary w-100" (click)="obtenerProductos()">ObtenerTodos</button>
+    </div>
+    <div class="col text-center">
+        <button type="button" class="btn btn-danger w-100" (click)="obtenerDestacados()">ObtenerDestacados</button>
+    </div>
+    <div class="col text-center">
+        <label class="text-light" for="filtro">Filtro Categoria:</label>
+        <select class="w-100" name="filtro" id="filtro" [(ngModel)]="filtro" (change)="filtrarPorCategoria()">
+            <option value="todos" selected>todos</option>
+            <option value="gaming">gaming</option>
+            <option value="accesorio">accesorio</option>
+            <option value="hardware">hardware</option>
+        </select>
+    </div> 
+</div>
+<div class="row text-light">
+        <div class="col table-responsive">
+            <table class="table align-middle table-bordered border-primary">
+              <thead>
+                <tr class="table-dark text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Destacado</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of productosFilter; let i = index" class="table-secondary text-center">
+                  <th scope="row">{{i+1}}</th>
+                  <td class="">{{e.nombre}}</td>
+                  <td>{{e.precio | currency}}</td>
+                  <td>{{e.categoria}}</td>
+                  <td>{{e.stock}}</td>
+                  <td>{{e.destacado | destacado}}</td>
+                  <td>{{e.descripcion}}</td>
+                  <td class="text-center"><img class="tam-img" [src]="e.imagen" alt="imagen no encontrada"></td>
+                  <td>
+                    <button type="button" class="btn btn-warning" (click)="modificarProducto(e._id)">Modificar</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminarProducto(e._id)">Eliminar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <button type="button" class="btn btn-success w-100" (click)="agregarProducto()">Agregar</button>
+    </div> 
+</div>

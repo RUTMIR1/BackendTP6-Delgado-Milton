@@ -1,0 +1,54 @@
+<div class="row margin-top align-items-center">
+    <div class="col text-center">
+        <button type="button" class="btn btn-primary w-100" (click)="obtenerTransacciones()">ObtenerTodos</button>
+    </div>
+    <div class="col text-center text-light">
+        <form>
+            <label for="correo">Buscar Por Correo:</label>
+            <input type="text" name="correo" id="correo" [(ngModel)]="correo">
+            <button type="button" class="btn btn-warning w-100" (click)="obtenerTransaccionesPorCorreo(correo)">Buscar</button>
+        </form>
+    </div>
+    <div class="col text-center text-light">
+        <form>
+            <label for="origen">Moneda Origen:</label>
+            <input type="text" name="origen" id="origen" [(ngModel)]="origen">
+            <label for="destino">Moneda Destino:</label>
+            <input type="text" name="destino" id="destino" [(ngModel)]="destino">
+            <button type="button" class="btn btn-warning w-100" (click)="obtenerTransaccionesPorMonedas()">Buscar</button>
+        </form>
+    </div> 
+</div>
+<div class="row text-light">
+    <div class="col table-responsive">
+        <table class="table align-middle table-bordered border-primary">
+          <thead>
+            <tr class="table-dark text-center">
+                <th scope="col">#</th>
+                <th scope="col">Moneda Origen</th>
+                <th scope="col">Moneda Destino</th>
+                <th scope="col">Cantidad Origen</th>
+                <th scope="col">Cantidad Destino</th>
+                <th scope="col">Email Cliente</th>
+                <th scope="col">Tasa Conversion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of transacciones; let i = index" class="table-secondary text-center">
+              <th scope="row">{{i+1}}</th>
+              <td>{{e.monedaOrigen}}</td>
+              <td>{{e.monedaDestino}}</td>
+              <td>{{e.cantidadOrigen | currency}}</td>
+              <td>{{e.cantidadDestino | currency}}</td>
+              <td>{{e.emailCliente}}</td>
+              <td>{{e.tasaConversion}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <button type="button" class="btn btn-success w-100" (click)="agregarTransaccion()">Agregar</button>
+    </div> 
+</div>

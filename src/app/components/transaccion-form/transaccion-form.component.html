@@ -1,0 +1,57 @@
+<div class="row margin-top d-flex justify-content-center align-items-center">
+    <div class="col-6 text-dark">
+        <h2 class="text-center bg-success">CONVERSOR DE DIVISAS</h2>
+        <form class="w-100 bg-light" #form="ngForm">
+            <div class="mb-3">
+                <hr>
+              <label for="monedaOrigen" class="form-label">Moneda Origen:</label>
+              <select class="border-primary" name="monedaOrigen" id="monedaOrigen" [(ngModel)]="transaccion.monedaOrigen" (change)="calcularTasa()" required #monedaOrigen="ngModel">
+                <option value="USD" selected> USD United States Dollar</option>
+                <option *ngFor="let e of codigos" [value]="e.symbol"> {{e.symbol}} {{e.name}}</option>
+              </select>
+              <div class="alert alert-danger mt-1" [hidden]="monedaOrigen.valid">
+                la moneda Origen es obligatorio
+                </div>
+              <hr>
+            </div>
+            <div class="mb-3">
+              <label for="monedaDestino" class="form-label">Moneda Destino:</label>
+              <select class="border-primary" name="monedaDestino" id="monedaDestino" [(ngModel)]="transaccion.monedaDestino" (change)="calcularTasa()" required #monedaDestino="ngModel">
+                <option value="ARS" selected> ARS Pesos Argentinos </option>
+                <option *ngFor="let e of codigos" [value]="e.symbol"> {{e.symbol}} {{e.name}}</option>
+              </select>
+              <div class="alert alert-danger mt-1" [hidden]="monedaDestino.valid">
+                La moneda Destino es obligatorio
+                </div>
+              <hr>
+            </div>
+            <div class="mb-3">
+                <label for="cantidadOrigen" class="form-label">Cantidad Origen:</label>
+                <input name="cantidadOrigen" type="number" class="form-control border-primary" id="cantidadOrigen" [(ngModel)]="transaccion.cantidadOrigen" (change)="calcularCantidadDestino()" required #cantidadOrigen="ngModel">
+                <div class="alert alert-danger mt-1" [hidden]="cantidadOrigen.valid">
+                    La cantidad origen es obligatorio
+                </div>
+                <hr>
+            </div>
+            <div class="mb-3">
+                <label for="cantidadDestino" class="form-label">Cantidad Destino:</label>
+                <input name="cantidadDestino" type="number" class="form-control border-primary" id="cantidadDestino" [(ngModel)]="transaccion.cantidadDestino" (change)="calcularCantidadDestino()" disabled>
+                <hr>
+            </div>
+            <div class="mb-3">
+                <label for="emailCliente" class="form-label">Email Cliente:</label>
+                <input name="emailCliente" type="email" class="form-control border-primary" id="emailCliente" [(ngModel)]="transaccion.emailCliente" required #emailCliente="ngModel">
+                <div class="alert alert-danger mt-1" [hidden]="emailCliente.valid">
+                    El correo es obligatorio
+                </div>
+                <hr>
+            </div>
+            <div class="mb-3">
+                <label for="tasaConversion" class="form-label">Tasa Conversion:</label>
+                <input name="tasaConversion" type="number" class="form-control border-primary" id="tasaConversion" [(ngModel)]="transaccion.tasaConversion" (change)="calcularCantidadDestino()">
+                <hr>
+            </div>
+            <button class="btn btn-success w-100 border-black" [disabled]="form.invalid" (click)="accionFormulario()"> CONVERTIR</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="row margin-top align-items-center">
+    <div class="col text-center">
+        <button type="button" class="btn btn-primary w-100" (click)="obtenerTickets()">ObtenerTodos</button>
+    </div>
+    <div class="col text-center text-light">
+        <form>
+            <label for="categoria">Buscar Por Categoria:</label>
+            <select name="categoriaEspectador" id="categoriaEspectador" [(ngModel)]="categoria">
+                <option value="l">Local</option>
+                <option value="e">Extranjero</option>
+            </select>
+            <button type="button" class="btn btn-warning w-100" (click)="obtenerTicketsByCategoria(categoria)">Buscar</button>
+        </form>
+    </div>
+</div>
+<div class="row text-light">
+    <div class="col table-responsive">
+        <table class="table align-middle table-bordered border-primary">
+          <thead>
+            <tr class="table-dark text-center">
+                <th scope="col">#</th>
+                <th scope="col">Precio Ticket</th>
+                <th scope="col">Categoria Espectador</th>
+                <th scope="col">Fecha Compra</th>
+                <th scope="col" colspan="4">Espectador</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            <tr class="table-dark text-center">
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of tickets; let i = index" class="table-secondary text-center">
+              <th scope="row">{{i+1}}</th>
+              <td>{{e.precioTicket | currency}}</td>
+              <td> {{e.categoriaEspectador | categoria}}</td>
+              <td> {{e.fechaCompra |  date:'dd/MM/yyyy'}}</td>
+              <td> {{e.espectador.nombre}}</td>
+              <td>{{e.espectador.apellido}}</td>
+              <td>{{e.espectador.dni}}</td>
+              <td>{{e.espectador.email}}</td>
+              <td>
+                <button type="button" class="btn btn-warning" (click)="modificarTicket(e._id)">Modificar</button>
+                <button type="button" class="btn btn-danger" (click)="eliminarTicket(e._id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <button type="button" class="btn btn-success w-100" (click)="agregarTicket()">Agregar</button>
+    </div> 
+</div>

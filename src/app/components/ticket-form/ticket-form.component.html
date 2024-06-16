@@ -1,0 +1,34 @@
+<div class="row margin-top d-flex justify-content-center align-items-center">
+    <div class="col-6 text-light">
+        <h2 class="text-center">Formulario Ticket</h2>
+        <form *ngIf="aviso" class="w-100" #form="ngForm">
+            <div class="mb-3">
+              <label for="precioTicket" class="form-label">Precio Ticket:</label>
+              <input name="precioTicket" type="number" class="form-control" id="precioTicket" [(ngModel)]="ticket.precioTicket" required #precioTicket="ngModel">
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="precioTicket.valid">
+              El precio es obligatorio
+            </div>
+            <div class="mb-3">
+              <label for="categoriaEspectador" class="form-label">Categoria Espectador:</label>
+              <select class="form-control" name="categoriaEspectador" id="categoriaEspectador" [(ngModel)]="ticket.categoriaEspectador" required #categoriaEspectador="ngModel">
+                <option value="l" selected>Local</option>
+                <option value="e">Extranjero</option>
+              </select>
+              <div class="alert alert-danger mt-1" [hidden]="categoriaEspectador.valid">
+                La categoria es obligatorio
+              </div>
+            </div>
+            <div class="mb-3">
+                <label for="esp" class="form-label">Espectador:</label>
+                <select class="form-control" name="esp" id="esp" [(ngModel)]="esp" (change)="asignarValorEspectador()" (change)="validarEspectador(ticket)" required #esp="ngModel">
+                    <option *ngFor="let e of espectadores" [value]="e._id">{{e.nombre}} {{e.apellido}}</option>
+                </select>
+                <div class="alert alert-danger mt-1" [hidden]="!validEspectador">
+                  El Espectador es obligatorio
+                </div>
+            </div>
+            <button class="btn btn-primary w-100" [disabled]="form.invalid || validEspectador" (click)="accionFormulario()">{{accion}}</button>
+        </form>
+    </div>
+</div>

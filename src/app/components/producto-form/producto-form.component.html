@@ -1,0 +1,64 @@
+<div class="row margin-top d-flex justify-content-center align-items-center">
+    <div class="col-6 text-light">
+        <h2 class="text-center">Formulario Producto</h2>
+        <form class="w-100" #form="ngForm">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <input name="nombre" type="text" class="form-control" id="nombre" [(ngModel)]="producto.nombre" required #nombre="ngModel">
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="nombre.valid">
+                El nombre es obligatorio
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio:</label>
+              <input name="precio" type="number" class="form-control" id="precio" [(ngModel)]="producto.precio" required #precio="ngModel">
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="precio.valid">
+                El precio es obligatorio
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripcion:</label>
+                <input name="descripcion" type="text" class="form-control" id="descripcion" [(ngModel)]="producto.descripcion" required #descripcion="ngModel">
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="descripcion.valid">
+                La descripcion es obligatorio
+            </div>
+            <div class="mb-3">
+                <label for="categoria" class="form-label">Categoria:</label>
+                <select name="categoria" class="form-control" id="categoria" [(ngModel)]="producto.categoria" required #categoria="ngModel">
+                    <option value="gaming">gaming</option>
+                    <option value="accesorio">accesorio</option>
+                    <option value="hardware">hardware</option>
+                </select>
+                <div class="alert alert-danger mt-1" [hidden]="categoria.valid">
+                    El categoria es obligatorio
+                </div>    
+            </div>
+            <div class="mb-3">
+                <label for="stock" class="form-label">Stock:</label>
+                <input name="stock" type="number" class="form-control" id="stock" [(ngModel)]="producto.stock" required #stock="ngModel">
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="stock.valid">
+                El stock es obligatorio
+            </div>
+            <div class="mb-3">
+                <label for="destacado" class="form-label">¿Es Destacado?</label>
+                <select name="destacado" class="form-control" id="destacado" [(ngModel)]="producto.destacado" required #destacado="ngModel">
+                    <option [value]="true" selected>Es Destacado</option>
+                    <option [value]="false">No es Destacado</option>
+                </select>   
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="destacado.valid">
+                El destacado es obligatorio
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen:</label>
+                <input name="imagen" type="text" class="form-control" id="imagen" [(ngModel)]="producto.imagen" required #imagen="ngModel">
+            </div>
+            <div class="alert alert-danger mt-1" [hidden]="imagen.valid">
+                la imagen es obligatorio
+            </div>
+            <button class="btn btn-primary w-100" [disabled]="form.invalid" (click)="accionFormulario()">{{accion}}</button>
+        </form>
+    </div>
+</div>
